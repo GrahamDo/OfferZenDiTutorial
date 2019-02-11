@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity;
 
 namespace OfferZenDiTutorial
 {
@@ -10,8 +11,9 @@ namespace OfferZenDiTutorial
             var number1 = GetNumber("Enter the first number: > ");
             var number2 = GetNumber("Enter the second number: > ");
             var operand = GetOperand();
-            var logger = new NullLogger();
-            var calc = new Calculator(logger);
+            var container = new UnityContainer();
+            container.RegisterType<ILogger, NullLogger>();
+            var calc = container.Resolve<Calculator>();
             var result = GetResult(calc, number1, number2, operand);
             Console.WriteLine($"{number1} {operand} {number2} = {result}");
             Console.Write("Press any key to continue...");

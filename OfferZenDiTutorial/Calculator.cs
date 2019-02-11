@@ -4,9 +4,9 @@
     {
         private readonly FileLogger _logger;
 
-        public Calculator()
+        public Calculator(FileLogger logger)
         {
-            _logger = new FileLogger();
+            _logger = logger;
         }
 
         public float Divide(float number1, float number2)

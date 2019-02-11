@@ -10,7 +10,8 @@ namespace OfferZenDiTutorial
             var number1 = GetNumber("Enter the first number: > ");
             var number2 = GetNumber("Enter the second number: > ");
             var operand = GetOperand();
-            var calc = new Calculator();
+            var logger = new FileLogger();
+            var calc = new Calculator(logger);
             var result = GetResult(calc, number1, number2, operand);
             Console.WriteLine($"{number1} {operand} {number2} = {result}");
             Console.Write("Press any key to continue...");

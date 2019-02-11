@@ -2,9 +2,9 @@
 {
     public class Calculator
     {
-        private readonly FileLogger _logger;
+        private readonly ILogger _logger;
 
-        public Calculator(FileLogger logger)
+        public Calculator(ILogger logger)
         {
             _logger = logger;
         }

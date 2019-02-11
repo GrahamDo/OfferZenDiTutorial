@@ -3,7 +3,7 @@ using System.IO;
 
 namespace OfferZenDiTutorial
 {
-    public class FileLogger
+    public class FileLogger : ILogger
     {
         private const string FileName = "Calculator.log";
         private readonly string _newLine = Environment.NewLine;

@@ -9,10 +9,10 @@ namespace OfferZenDiTutorial
         {
             var number1 = GetNumber("Enter the first number: > ");
             var number2 = GetNumber("Enter the second number: > ");
-            var operand = GetOperand();
+            var operation = GetOperator();
             var calc = new Calculator();
-            var result = GetResult(calc, number1, number2, operand);
-            Console.WriteLine($"{number1} {operand} {number2} = {result}");
+            var result = GetResult(calc, number1, number2, operation);
+            Console.WriteLine($"{number1} {operation} {number2} = {result}");
             Console.Write("Press any key to continue...");
             Console.ReadKey();
         }
@@ -34,31 +34,32 @@ namespace OfferZenDiTutorial
             return -1;
         }
 
-        private static char GetOperand()
+        private static char GetOperator()
         {
             var isValid = false;
             while (!isValid)
             {
-                Console.Write("Please type the operand (/*+-) > ");
+                Console.Write("Please type the operator (/*+-) > ");
                 var input = Console.ReadKey();
                 Console.WriteLine();
-                var operand = input.KeyChar;
-                if ("/*+-".Contains(operand))
+                var operation = input.KeyChar;
+                if ("/*+-".Contains(operation))
                 {
                     isValid = true;
-                    return operand;
+                    return operation;
                 }
 
-                Console.WriteLine("Please enter a valid operand (/, *, +, or -). " +
+                Console.WriteLine("Please enter a valid operator (/, *, +, or -). " +
                                   "Press ^C to quit.");
             }
 
             return ' ';
         }
 
-        private static float GetResult(Calculator calc, float number1, float number2, char operand)
+        private static float GetResult(Calculator calc, float number1, float number2, 
+            char operation)
         {
-            switch (operand)
+            switch (operation)
             {
                 case '/': return calc.Divide(number1, number2);
                 case '*': return calc.Multiply(number1, number2);
@@ -66,7 +67,8 @@ namespace OfferZenDiTutorial
                 case '-': return calc.Subtract(number1, number2);
                 default:
                     // Should never happen if our previous validations are working
-                    throw new InvalidOperationException($"Invalid operand passed: {operand}");
+                    throw new InvalidOperationException("Invalid operation passed: " + 
+                                                        operation);
             }
         }
     }
